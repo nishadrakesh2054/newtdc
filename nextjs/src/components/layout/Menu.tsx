@@ -55,7 +55,7 @@ export default function Menu() {
         </li>
 
         <li
-          className={`item ${checkParentActive(["/event", "/event-details"])}`}
+          className={`item ${checkParentActive(["/event", ])}`}
         >
           <Link href="/#">Our Events</Link>
           <ul className="submenu">
@@ -66,13 +66,7 @@ export default function Menu() {
             >
               <Link href="/event">Events</Link>
             </li>
-            <li
-              className={`item ${
-                pathname === "/event-details" ? "current-menu-item" : ""
-              }`}
-            >
-              <Link href="/event-details">Events Details</Link>
-            </li>
+         
             <li
               className={`item ${
                 pathname === "/sports-camps" ? "current-menu-item" : ""

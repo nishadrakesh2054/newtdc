@@ -74,7 +74,7 @@ export default function MobileMenu({
           <li
             className={`item ${checkParentActive([
               "/event",
-              "/event-details",
+          
               "/sports-camps",
             ])}`}
           >
@@ -87,9 +87,7 @@ export default function MobileMenu({
               <li className={`item ${checkCurrentMenuItem("/event")}`}>
                 <Link href="/event">Events</Link>
               </li>
-              <li className={`item ${checkCurrentMenuItem("/event-details")}`}>
-                <Link href="/event-details">Events Details</Link>
-              </li>
+          
               <li className={`item ${checkCurrentMenuItem("/sports-camps")}`}>
                 <Link href="/sports-camps">Special Camps</Link>
               </li>

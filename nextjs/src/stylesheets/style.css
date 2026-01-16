@@ -1564,9 +1564,9 @@ article.entry.format-standard {
 }
 
 .blog-pagination .flat-pagination li a:hover {
-  background-color: var(--black);
+  background-color: var(--sec);
   color: var(--primary);
-  border: 1px solid var(--black);
+  border: 1px solid var(--sec);
 }
 
 .blog-pagination .flat-pagination li a:hover i {
@@ -1574,8 +1574,8 @@ article.entry.format-standard {
 }
 
 .blog-pagination .flat-pagination li.active {
-  background-color: var(--black);
-  border: 1px solid var(--black);
+  background-color: var(--sec);
+  border: 1px solid var(--sec);
   color: var(--primary);
   width: 44px;
   height: 44px;
@@ -2106,8 +2106,8 @@ span.pull-right {
   display: block;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  background-color: var(--black);
-  color: var(--primary);
+  background-color: var(--primary);
+  color: var(--white);
   width: 30px;
   height: 30px;
   border-radius: 100px;

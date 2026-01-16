@@ -40,15 +40,45 @@ export default function Contact() {
           {/* /.page-title */}
           {/* Map Contact us */}
           <div className="map-contact-us">
-            <div className="map-contact relative">
-              <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3534.4274419317535!2d85.32312107611213!3d27.642244128358538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb17005434cb05%3A0xa7dc16fb1af01d1!2sThunderbolts%20Development%20Center!5e0!3m2!1sen!2snp!4v1724835834200!5m2!1sen!2snp"
-              height={570}
-                style={{ border: 0, width: "100%" }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+            <div className="themeflat-container">
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="map-contact relative">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3534.4274419317535!2d85.32312107611213!3d27.642244128358538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb17005434cb05%3A0xa7dc16fb1af01d1!2sThunderbolts%20Development%20Center!5e0!3m2!1sen!2snp!4v1724835834200!5m2!1sen!2snp"
+                      height={570}
+                      style={{ border: 0, width: "100%" }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
+                    <h5
+                      className="text-center text-uppercase"
+                      style={{ marginTop: "20px", color: "var(--primary)" }}
+                    >
+                      Main Branch - Dhapakhel, Lalitpur
+                    </h5>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="map-contact relative">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3566.5188597555093!2d87.9875100760875!3d26.631864872102224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e5baf2f96b471b%3A0x7cd8929eb75daa0c!2sLittle%20Flowers&#39;%20English%20School!5e0!3m2!1sen!2snp!4v1764143323648!5m2!1sen!2snp"
+                      height={570}
+                      style={{ border: 0, width: "100%" }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
+                    <h5
+                      className="text-center text-uppercase"
+                      style={{ marginTop: "20px", fontWeight: "600" , color: "var(--primary)" }}
+                    >
+                      Branch Office - Birtamod, Jhapa
+                    </h5>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           {/* Map Contact us */}
@@ -62,14 +92,16 @@ export default function Contact() {
                       <span className="wow fadeInUp animated">Contact us</span>
                       <h2 className="wow fadeInUp animated">Get it touch</h2>
                       <p className="post wow fadeInUp animated">
-                      Located on the GEMS School campus, TDC is equipped with world-class facilities and infrastructure that cater to the sporting aspirations of youth across the country.
+                        Located on the GEMS School campus, TDC is equipped with
+                        world-class facilities and infrastructure that cater to
+                        the sporting aspirations of youth across the country.
                       </p>
                     </div>
                     <div className="list-contact-us">
                       <div className="inner">
                         <span className="wow fadeInUp animated">Phone: </span>
                         <h6 className="wow fadeInUp animated">
-                        +977 9801973967/85/86
+                          +977 9801973967/85/86
                         </h6>
                       </div>
                       <div className="inner">
@@ -79,9 +111,19 @@ export default function Contact() {
                         </Link>
                       </div>
                       <div className="inner">
-                        <span className="wow fadeInUp animated">Location:</span>
+                        <span className="wow fadeInUp animated">
+                          Main Branch:
+                        </span>
                         <h6 className="wow fadeInUp animated">
-                        Dhapakhel, Lalitpur, Nepal
+                          Dhapakhel, Lalitpur, Nepal
+                        </h6>
+                      </div>
+                      <div className="inner">
+                        <span className="wow fadeInUp animated">
+                          Branch Office:
+                        </span>
+                        <h6 className="wow fadeInUp animated">
+                          Birtamod, Jhapa, Nepal
                         </h6>
                       </div>
                     </div>

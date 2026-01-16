@@ -338,7 +338,7 @@
 	.home2 .flat-row.row-portfolio,
 	.home2 .flat-row.row-pricing,
 	.home2 .flat-row.row-testimonials {
-		padding: 60px 0px;
+		padding: 20px 0px;
 	}
 
 	.flat-row.row-progress,
@@ -895,7 +895,7 @@
 	}
 
 	.main-content {
-		padding: 60px 0px;
+		padding: 20px 0px;
 	}
 
 	.blog-content-single .widget-tf-blog {

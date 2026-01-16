@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "title": "Sports Camp Training",
+        "category": "Training",
+        "image": "/img/gallery/g1.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Football Match",
+        "category": "Events",
+        "image": "/img/gallery/g2.jpg"
+    },
+    {
+        "id": 3,
+        "title": "Swimming Practice",
+        "category": "Training",
+        "image": "/img/gallery/g3.jpg"
+    },
+    {
+        "id": 4,
+        "title": "Championship Trophy",
+        "category": "Events",
+        "image": "/img/gallery/g4.jpg"
+    },
+    {
+        "id": 5,
+        "title": "Team Building",
+        "category": "Activities",
+        "image": "/img/gallery/g5.jpg"
+    },
+    {
+        "id": 6,
+        "title": "Athletics Training",
+        "category": "Training",
+        "image": "/img/gallery/g6.jpg"
+    },
+    {
+        "id": 7,
+        "title": "Sports Day Celebration",
+        "category": "Events",
+        "image": "/img/gallery/g7.jpg"
+    }
+]
