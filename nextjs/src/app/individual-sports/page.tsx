@@ -2,7 +2,38 @@
 
 import Link from "next/link";
 import Layout from "../../components/layout/Layout";
-import Form2 from "@/components/sections/Form2";
+
+
+  
+  // Camp data
+  const campsData = [
+    {
+      id: 1,
+      title: "Grassroots",
+      age: "6 – 10 years old",
+      description:
+        "Our Grassroots program is designed to introduce young athletes to the fundamentals of sports in a fun and engaging environment. Through age-appropriate training and activities, we nurture their passion for sports while building essential skills. Athletes in this category will have the opportunity to participate in beginner and non-beginner groups, ensuring tailored coaching that caters to their individual needs and abilities.",
+      image: "/images/camp/wintercmp.jpg",
+    
+    },
+    {
+      id: 2,
+      title: "Springs Camps",
+      description:
+        "Kickstart your season with THUNDERBOLTS Spring Camps! Enjoy focused training and skill enhancement to boost your performance.",
+      image: "/images/camp/spring.jpg",
+   
+    },
+    {
+      id: 3,
+      title: "Athletic Development Workshops/Clinics",
+      description:
+        "Enhance your skills with our Workshops and Clinics! Get expert guidance and focused training to refine techniques and improve performance.",
+      image: "/images/camp/athlete.jpg",
+    
+    },
+ 
+  ];
 
 export default function IndividualSports() {
   return (
@@ -41,49 +72,105 @@ export default function IndividualSports() {
                 {/* /.col-md-12 */}
               </div>
               {/* /.row */}
+
+              
             </div>
             {/* /.container */}
           </div>
-          {/* /.page-title */}
-          {/* Individual Sports Content */}
-          <section className="main-content">
+      
+        
+
+          <div className="tf-widget-events">
             <div className="themeflat-container">
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="content-section wow fadeInUp animated">
-                    <h2 className="wow fadeInUp animated">Individual Sports Academy</h2>
-                    <p className="post wow fadeInUp animated">
-                      Welcome to our Individual Sports Academy. We offer comprehensive training programs for individual sports including running, swimming, cycling, tennis, and more. Our expert coaches provide personalized training to help you achieve your personal best.
-                    </p>
-                    <div className="row" style={{ marginTop: "30px" }}>
-                      <div className="col-md-6">
-                        <h3 className="wow fadeInUp animated">Programs Offered</h3>
-                        <ul className="wow fadeInUp animated">
-                          <li>Running & Track Events</li>
-                          <li>Swimming</li>
-                          <li>Cycling</li>
-                          <li>Tennis</li>
-                          <li>Golf</li>
-                          <li>Martial Arts</li>
-                        </ul>
-                      </div>
-                      <div className="col-md-6">
-                        <h3 className="wow fadeInUp animated">Training Benefits</h3>
-                        <ul className="wow fadeInUp animated">
-                          <li>Personalized coaching</li>
-                          <li>Flexible schedules</li>
-                          <li>Progress tracking</li>
-                          <li>Competition preparation</li>
-                        </ul>
-                      </div>
+              {campsData.map((camp, index) => {
+                const isEven = index % 2 === 0;
+                const contentSection = (
+                  <div className="col-md-6">
+                    <div className="event-detail-content">
+                      <h4
+                        className="wow fadeInUp animated text-uppercase"
+                        style={{
+                          position: "relative",
+                          display: "inline-block",
+                          width: "100%",
+                        
+                        }}
+                      >
+                        <span
+                          style={{
+                            position: "absolute",
+                            left: 0,
+                            top: "50%",
+                            width: "30px",
+                            height: "3px",
+                            backgroundColor: "var(--primary)",
+                            transform: "translateY(-50%)",
+                          }}
+                        />
+                        <span
+                          style={{ paddingLeft: "35px" }}
+                        >
+                          {camp.title}
+                        </span>
+                      </h4>
+                      <p className="post wow fadeInUp animated">
+                        {camp.description}
+                      </p>
+                    
+                      <p className="post regis-now wow fadeInUp animated">
+                        Register now, and don&apos;t miss out on this incredible
+                        opportunity!
+                      </p>
+                      <Link
+                        href="/contact"
+                        className="flat-button wow fadeInUp animated"
+                      >
+                        Register now
+                      </Link>
                     </div>
                   </div>
-                </div>
-              </div>
+                );
+                const imageSection = (
+                  <div className="col-md-6">
+                    <div className="image-event-content">
+                      <img
+                        src={camp.image}
+                        alt={camp.title}
+                        className={
+                          isEven
+                            ? "wow fadeInRight animated"
+                            : "wow fadeInLeft animated"
+                        }
+                      />
+                    </div>
+                  </div>
+                );
+
+                return (
+                  <div
+                    key={camp.id}
+                    className="row"
+                    style={{
+                      marginBottom: index < campsData.length - 1 ? "80px" : "0",
+                    }}
+                  >
+                    {isEven ? (
+                      <>
+                        {contentSection}
+                        {imageSection}
+                      </>
+                    ) : (
+                      <>
+                        {imageSection}
+                        {contentSection}
+                      </>
+                    )}
+                  </div>
+                );
+              })}
             </div>
-          </section>
-          {/* Widget form contact */}
-          <Form2 />
+          </div>
+      
         </div>
       </Layout>
     </>

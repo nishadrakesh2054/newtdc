@@ -34,6 +34,7 @@ export default function Footer1() {
 										<li><Link href="/event">Our Event</Link></li>
 										<li><Link href="/blog">Latest News</Link></li>
 										<li><Link href="/contact">Contact Us</Link></li>
+                                        <li><Link href="/sponsors">Become a Sponsor</Link></li>
 									</ul>{/* /.menu */}
 								</div>{/* /.widget */}
 								<div className="widget widget_menu-footer">
@@ -43,6 +44,7 @@ export default function Footer1() {
 										<li><Link href="/event-details">Events Detail</Link></li>
 										<li><Link href="/event">Events</Link></li>
 										<li><Link href="/about">About Us</Link></li>
+                                        <li><Link href="/career">Career</Link></li>
 									</ul>{/* /.menu */}
 								</div>{/* /.widget */}
 							</div>{/* /.col-md-4 */}
