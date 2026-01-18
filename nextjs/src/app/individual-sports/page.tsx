@@ -3,6 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import Layout from "../../components/layout/Layout";
+import Breadcrum from "@/components/elements/Breadcrum";
+import Image from "next/image";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Camp data
 const tennisData = [
@@ -66,6 +70,115 @@ const introTexts = {
     "Dive into excellence at THUNDERBOLTS! We offer top-notch training with expert coaches and state-of-the-art facilities, designed to help swimmers of all levels improve their technique and achieve their goals. Whether you're just starting out or aiming for competitive success, our programs provide a supportive and effective environment for every swimmer. Join us and make a splash in your swimming journey!",
 };
 
+// Gallery images for each category
+const galleryImages = {
+  tennis: [
+    "/images/ev/1.png",
+    "/images/ev/2.png",
+    "/images/ev/3.png",
+    "/images/ev/4.png",
+    "/images/ev/5.png",
+    "/images/ev/6.png",
+    "/images/ev/7.png",
+    "/images/ev/8.png",
+  ],
+  aquatic: [
+    "/images/ev/5.png",
+    "/images/ev/6.png",
+    "/images/ev/7.png",
+    "/images/ev/8.png",
+    "/images/ev/1.png",
+    "/images/ev/2.png",
+    "/images/ev/3.png",
+    "/images/ev/4.png",
+  ],
+};
+
+// Swiper options for gallery slider
+const gallerySwiperOptions = {
+  modules: [Autoplay, Pagination, Navigation],
+  slidesPerView: 4,
+  spaceBetween: 15,
+  autoplay: {
+    delay: 2000,
+    disableOnInteraction: false,
+  },
+  loop: true,
+  breakpoints: {
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 10,
+    },
+    640: {
+      slidesPerView: 2,
+      spaceBetween: 10,
+    },
+    768: {
+      slidesPerView: 3,
+      spaceBetween: 15,
+    },
+    1024: {
+      slidesPerView: 4,
+      spaceBetween: 15,
+    },
+  },
+};
+
+// Image Gallery Component with Slider
+const ImageGallery = ({
+  images,
+  title,
+}: {
+  images: string[];
+  title: string;
+}) => (
+  <div className="row" style={{ marginTop: "40px" }}>
+    <div className="col-md-12">
+      <div className="event-gallery">
+        <h6
+          className="wow fadeInUp animated text-uppercase"
+          style={{
+            color: "var(--primary)",
+            fontWeight: "700",
+            marginBottom: "30px",
+            textAlign: "start",
+          }}
+        >
+          {title}
+        </h6>
+        <Swiper {...gallerySwiperOptions} className="gallery-swiper">
+          {images.map((image, index) => (
+            <SwiperSlide key={index}>
+              <div
+                className="gallery-item"
+                style={{
+                  width: "100%",
+                  aspectRatio: "400 / 340",
+                  overflow: "hidden",
+                }}
+              >
+                <Image
+                  src={image}
+                  alt={`Gallery ${index + 1}`}
+                  width={400}
+                  height={340}
+                  className="wow fadeInUp animated"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                  }}
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </div>
+  </div>
+);
+
 export default function IndividualSports() {
   const [activeFilter, setActiveFilter] = useState<"tennis" | "aquatic">(
     "tennis"
@@ -74,6 +187,11 @@ export default function IndividualSports() {
   const currentData =
     activeFilter === "tennis" ? tennisData : thunderboltsDataAquatic;
   const currentIntroText = introTexts[activeFilter];
+  const currentGalleryImages = galleryImages[activeFilter];
+  const galleryTitle =
+    activeFilter === "tennis"
+      ? "Some Glimpse Of Our Tennis Programs"
+      : "Some Glimpse Of Our Aquatic Programs";
 
   const renderContent = (data: typeof tennisData) => {
     return data.map((item, index) => {
@@ -154,7 +272,6 @@ export default function IndividualSports() {
               style={{
                 position: "relative",
                 overflow: "hidden",
-                borderRadius: "8px",
                 boxShadow: "0 10px 30px rgba(0, 0, 0, 0.15)",
                 transition: "transform 0.3s ease, box-shadow 0.3s ease",
               }}
@@ -169,9 +286,11 @@ export default function IndividualSports() {
                   "0 10px 30px rgba(0, 0, 0, 0.15)";
               }}
             >
-              <img
+              <Image
                 src={item.image}
                 alt={item.title}
+                width={600}
+                height={400}
                 className={
                   isEven
                     ? "wow fadeInRight animated"
@@ -179,6 +298,7 @@ export default function IndividualSports() {
                 }
                 style={{
                   width: "100%",
+                  height: "auto",
                   display: "block",
                   transition: "transform 0.3s ease",
                 }}
@@ -206,7 +326,6 @@ export default function IndividualSports() {
                     color: "var(--black)",
                     fontSize: "15px",
                     fontWeight: "700",
-                    borderRadius: "6px",
                     letterSpacing: "0.5px",
                     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.25)",
                     textTransform: "uppercase",
@@ -246,44 +365,16 @@ export default function IndividualSports() {
   };
 
   return (
-    <>
-      <Layout headerStyle={1} footerStyle={1}>
+    <Layout headerStyle={1} footerStyle={1}>
         <div>
-          <div className="page-title">
-            <div className="themeflat-container">
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="page-title-heading">
-                    <h1 className="title">Individual Sports</h1>
-                  </div>
-                  {/* /.page-title-captions */}
-                  <div className="breadcrumbs">
-                    <ul>
-                      <li>
-                        <Link href="/">Homepage</Link>
-                      </li>
-                      <li>
-                        <i className="icon-Arrow---Right-2" />
-                      </li>
-                      <li>
-                        <Link href="/#">Academy</Link>
-                      </li>
-                      <li>
-                        <i className="icon-Arrow---Right-2" />
-                      </li>
-                      <li>
-                        <a>Individual Sports</a>
-                      </li>
-                    </ul>
-                  </div>
-                  {/* /.breadcrumbs */}
-                </div>
-                {/* /.col-md-12 */}
-              </div>
-              {/* /.row */}
-            </div>
-            {/* /.container */}
-          </div>
+          <Breadcrum 
+            title="Individual Sports"
+            breadcrumbs={[
+              { label: "Homepage", href: "/" },
+              { label: "Academy", href: "/#" },
+              { label: "Individual Sports" }
+            ]}
+          />
 
           <div className="tf-widget-events">
             <div className="themeflat-container">
@@ -332,7 +423,6 @@ export default function IndividualSports() {
                   marginBottom: "40px",
                   padding: "30px",
                   backgroundColor: "#f8f9fa",
-                  borderRadius: "8px",
                 }}
               >
                 <p
@@ -347,10 +437,12 @@ export default function IndividualSports() {
 
               {/* Render Content */}
               {renderContent(currentData)}
+
+              {/* Image Gallery */}
+              <ImageGallery images={currentGalleryImages} title={galleryTitle} />
             </div>
           </div>
         </div>
       </Layout>
-    </>
   );
 }

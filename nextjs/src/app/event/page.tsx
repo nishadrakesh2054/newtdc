@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import Layout from "../../components/layout/Layout";
+import Breadcrum from "@/components/elements/Breadcrum";
+import Image from "next/image";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -48,28 +50,40 @@ const listItemStyle = {
   marginBottom: "15px",
 };
 
+interface EventItem {
+  name: string;
+  date: string;
+}
+
 // Reusable Event List Item Component
-const EventListItem = ({ event }: { event: string }) => (
+const EventListItem = ({ event, isLast }: { event: EventItem; isLast?: boolean }) => (
   <li className="wow fadeInUp animated" style={listItemStyle}>
-    <span>
-      <CheckmarkIcon />
-      &nbsp;&nbsp;{event}
+    <span style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
+      <span>
+        <CheckmarkIcon />
+        &nbsp;&nbsp;{event.name}
+      </span>
+      <span style={{ color: "var(--primary)", fontWeight: "600", fontSize: "14px" }}>
+        {event.date}
+      </span>
     </span>
+    {!isLast && <hr style={{ margin: "10px 0 0 0", border: "none", borderTop: "1px solid var(--secondary)" }} />}
   </li>
 );
 
 // Reusable Event List Component
-const EventList = ({ events, title }: { events: string[]; title: string }) => (
+const EventList = ({ events, title }: { events: EventItem[]; title: string }) => (
   <div className="event-category-section">
     <h5
-      className="wow fadeInUp animated text-uppercase"
+      className="wow fadeInUp animated text-uppercase text-start text-md-start mb-3"
       style={categoryHeadingStyle}
     >
       {title}
+
     </h5>
     <ul style={listStyle}>
       {events.map((event, index) => (
-        <EventListItem key={index} event={event} />
+        <EventListItem key={index} event={event} isLast={index === events.length - 1} />
       ))}
     </ul>
   </div>
@@ -146,12 +160,13 @@ const ImageGallery = ({ images }: { images: string[] }) => (
                   width: "100%",
                   aspectRatio: "400 / 340",
                   overflow: "hidden",
-                  borderRadius: "8px",
                 }}
               >
-                <img
+                <Image
                   src={image}
                   alt={`Gallery ${index + 1}`}
+                  width={400}
+                  height={340}
                   className="wow fadeInUp animated"
                   style={{
                     width: "100%",
@@ -205,10 +220,13 @@ const EventCard = ({ event }: { event: (typeof eventsData)[0] }) => (
       </div>
       <div className="col-md-5">
         <div className="image-event-content">
-          <img
+          <Image
             src={event.image}
             alt={event.title}
+            width={500}
+            height={400}
             className="wow fadeInRight animated"
+            style={{ width: "100%", height: "auto" }}
           />
         </div>
       </div>
@@ -218,39 +236,42 @@ const EventCard = ({ event }: { event: (typeof eventsData)[0] }) => (
 );
 
 // Event data
-const squadEvents = [
-  "Basketball U-16 Boys",
-  "Basketball U-18 Boys",
-  "Basketball U-18 Girls",
-  "Cricket U-12 Boys",
-  "Cricket U-16 Boys",
-  "Cricket U-18 Boys",
-  "Football U-12 Boys",
-  "Football U-16 Boys",
-  "Futsal U-13 Girls",
-  "Futsal U-18 Boys",
-  "Futsal U-18 Girls",
-  "Volleyball U-18 Boys",
-  "Volleyball U-18 Girls",
+const squadEvents: EventItem[] = [
+  { name: "Basketball U-16 Boys", date: "Dec 15, 2026" },
+  { name: "Basketball U-18 Boys", date: "Dec 16, 2026" },
+  { name: "Basketball U-18 Girls", date: "Dec 17, 2026" },
+  { name: "Cricket U-12 Boys", date: "Dec 18, 2026" },
+  { name: "Cricket U-16 Boys", date: "Dec 19, 2026" },
+  { name: "Cricket U-18 Boys", date: "Dec 20, 2026" },
+  { name: "Football U-12 Boys", date: "Dec 21, 2026" },
+  { name: "Football U-16 Boys", date: "Dec 22, 2026" },
+  { name: "Futsal U-13 Girls", date: "Dec 23, 2026" },
+  { name: "Futsal U-18 Boys", date: "Dec 24, 2026" },
+  { name: "Futsal U-18 Girls", date: "Dec 25, 2026" },
+  { name: "Volleyball U-18 Boys", date: "Dec 26, 2026" },
+  { name: "Volleyball U-18 Girls", date: "Dec 27, 2026" },
 ];
 
-const individualEvents = [
-  "Archery Boys",
-  "Archery Girls",
-  "Chess U-14 Boys",
-  "Chess U-14 Girls",
-  "Chess U-18 Boys",
-  "Chess U-18 Girls",
-  "E-Sports",
-  "Judo Boys",
-  "Judo Girls",
-  "Swimming",
-  "Table Tennis U-12 Boys",
-  "Table Tennis U-12 Girls",
-  "Table Tennis U-15 Boys",
-  "Table Tennis U-15 Girls",
-  "Table Tennis U-18 Boys",
-  "Taekwondo",
+const individualEvents: EventItem[] = [
+  { name: "Archery Boys", date: "Dec 15, 2026" },
+  { name: "Archery Girls", date: "Dec 15, 2026" },
+  { name: "Chess U-14 Boys", date: "Dec 16, 2026" },
+  { name: "Chess U-14 Girls", date: "Dec 16, 2026" },
+  { name: "Chess U-18 Boys", date: "Dec 17, 2026" },
+  { name: "Chess U-18 Girls", date: "Dec 17, 2026" },
+  { name: "E-Sports", date: "Dec 18, 2026" },
+  { name: "Judo Boys", date: "Dec 19, 2026" },
+  { name: "Judo Girls", date: "Dec 19, 2026" },
+  { name: "Swimming", date: "Dec 20, 2026" },
+  { name: "Table Tennis U-12 Boys", date: "Dec 21, 2026" },
+  { name: "Table Tennis U-12 Girls", date: "Dec 21, 2026" },
+  { name: "Table Tennis U-15 Boys", date: "Dec 22, 2026" },
+  { name: "Table Tennis U-15 Girls", date: "Dec 22, 2026" },
+  { name: "Table Tennis U-18 Boys", date: "Dec 23, 2026" },
+  { name: "Taekwondo Boys", date: "Dec 24, 2026" },
+  { name: "Taekwondo Girls", date: "Dec 24, 2026" },
+  { name: "Tennis U-18 Boys", date: "Dec 25, 2026" },
+  { name: "Tennis U-18 Girls", date: "Dec 25, 2026" },
 ];
 
 const eventsData = [
@@ -308,39 +329,15 @@ const eventsData = [
 
 export default function Event() {
   return (
-    <>
-      <Layout headerStyle={1} footerStyle={1}>
+    <Layout headerStyle={1} footerStyle={1}>
         <div>
-          <div className="page-title page-title-blog">
-            <div className="themeflat-container">
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="page-title-heading">
-                    <h1 className="title">Events</h1>
-                  </div>
-                  {/* /.page-title-captions */}
-                  <div className="breadcrumbs">
-                    <ul>
-                      <li>
-                        <Link href="/">Homepage</Link>
-                      </li>
-                      <li>
-                        {" "}
-                        <i className="icon-Arrow---Right-2" />
-                      </li>
-                      <li>
-                        <Link href="/event">Events</Link>
-                      </li>
-                    </ul>
-                  </div>
-                  {/* /.breadcrumbs */}
-                </div>
-                {/* /.col-md-12 */}
-              </div>
-              {/* /.row */}
-            </div>
-          </div>
-          {/* /.page-title */}
+          <Breadcrum 
+            title="Events"
+            breadcrumbs={[
+              { label: "Homepage", href: "/" },
+              { label: "Events", href: "/event" }
+            ]}
+          />
 
           <div className="tf-widget-events ">
             <div className="themeflat-container">
@@ -349,7 +346,7 @@ export default function Event() {
                 .map((event) => (
                   <div key={event.id}>
                     <EventCard event={event} />
-                    <div className="row">
+                    <div className="row  ">
                       <div className="col-md-6">
                         <EventList events={squadEvents} title="Squad Events" />
                       </div>
@@ -377,6 +374,5 @@ export default function Event() {
           </div>
         </div>
       </Layout>
-    </>
   );
 }

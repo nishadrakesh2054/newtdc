@@ -1,8 +1,32 @@
-'use client'
+"use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import Menu from "../Menu";
+import Image from "next/image";
+
+interface SocialLink {
+  id: number;
+  href: string;
+  icon: string;
+}
+
+const socialLinks: SocialLink[] = [
+  { id: 1, href: "/facebook.com", icon: "icon-facebook" },
+  { id: 2, href: "/instagram.com", icon: "icon-instagram" },
+  { id: 3, href: "/youtube.com", icon: "icon-youtube" },
+];
+
+const contactInfo = {
+  email: "info@thunderbolts.com.np",
+  address: "Dhapakhel, Lalitpur | Nepal",
+};
+
+const logoImage = {
+  src: "/images/tdc.png",
+  alt: "TDC Logo",
+  width: 150,
+  height: 50,
+};
 
 export default function Header1({
   scroll,
@@ -11,34 +35,27 @@ export default function Header1({
   scroll: boolean;
   handleMobileMenu: () => void;
 }) {
-  const [isToggled, setToggled] = useState(false);
-  const handleToggled = () => setToggled(!isToggled);
-  
   return (
     <>
       <div className="header-top">
         <div className="themeflat-container">
           <div className="header-top-inner">
             <div className="address">
-              <Link href="/mailto:">
+              <Link href={`mailto:${contactInfo.email}`}>
                 <i className="icon-Vector" />
-                info@thunderbolts.com.np
+                {contactInfo.email}
               </Link>
               <address>
                 <i className="icon-Vector-22" />
-                Dhapakhel, Lalitpur | Nepal
+                {contactInfo.address}
               </address>
             </div>
             <div className="social-icon">
-              <Link href="/facebook.com">
-                <i className="icon-facebook" />
-              </Link>
-              <Link href="/instagram.com">
-                <i className="icon-instagram" />
-              </Link>
-              <Link href="/youtube.com">
-                <i className="icon-youtube" />
-              </Link>
+              {socialLinks.map((social) => (
+                <Link key={social.id} href={social.href}>
+                  <i className={social.icon} />
+                </Link>
+              ))}
             </div>
           </div>
         </div>
@@ -52,28 +69,47 @@ export default function Header1({
           <div className="header-inner">
             <div id="logo" className="logo">
               <Link href="/" rel="home">
-                <img id="a2" src="/images/tdc.png" alt="image" />
+                <Image
+                  id="a2"
+                  src={logoImage.src}
+                  alt={logoImage.alt}
+                  width={logoImage.width}
+                  height={logoImage.height}
+                  style={{ width: "auto", height: "auto" }}
+                />
               </Link>
             </div>
-            {/* /.logo */}
             <div className="nav-wrap">
               <div className="btn-menu" onClick={handleMobileMenu}>
                 <span className="line-1" />
               </div>
-              {/* //mobile menu button */}
               <nav id="mainnav" className="mainnav">
                 <div id="logo-mobie" className="logo">
                   <Link href="/" rel="home">
-                    <img src="/images/tdc.png" alt="image" />
+                    <Image
+                      src={logoImage.src}
+                      alt={logoImage.alt}
+                      width={logoImage.width}
+                      height={logoImage.height}
+                      style={{ width: "auto", height: "auto" }}
+                    />
                   </Link>
                 </div>
-                {/* /.logo */}
                 <Menu />
               </nav>
             </div>
-            {/* /.nav-wrap */}
-            <div className="header-right">
-              <button className="btn-contact">Join Us Now</button>
+            <div className="header-right d-md-flex align-items-center gap-2 d-none">
+              <Link href="/tdc-registration" className="btn-contact">
+                Join Us Now{" "}
+                <span>
+                  <Image
+                    src="/img/logo/button-img.png"
+                    alt=""
+                    width={15}
+                    height={15}
+                  />
+                </span>
+              </Link>
             </div>
           </div>
         </div>

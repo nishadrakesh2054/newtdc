@@ -1,115 +1,117 @@
+import Link from "next/link";
 
-import Link from "next/link"
+interface SocialLink {
+  href: string;
+  icon: string;
+}
+
+interface TeamMember {
+  id: number;
+  name: string;
+  job: string;
+  image: string;
+  imageAlt: string;
+  socialLinks: SocialLink[];
+  wowDelay: string;
+}
+
+const teamMembersData: TeamMember[] = [
+  {
+    id: 1,
+    name: "Chris pad",
+    job: "Co - Founder",
+    image: "/images/member/team1.jpg",
+    imageAlt: "Chris pad - Co Founder",
+    socialLinks: [
+      { href: "/facebook.com", icon: "icon-facebook" },
+      { href: "/twitter.com", icon: "icon-instagram" },
+      { href: "/linkedin.com", icon: "icon-linkedin2" },
+    ],
+    wowDelay: "0.1s",
+  },
+  {
+    id: 2,
+    name: "maverick",
+    job: "Manager",
+    image: "/images/member/team2.jpg",
+    imageAlt: "maverick - Manager",
+    socialLinks: [
+      { href: "/facebook.com", icon: "icon-facebook" },
+      { href: "/instagram.com", icon: "icon-instagram" },
+      { href: "/youtube.com", icon: "icon-youtube" },
+    ],
+    wowDelay: "0.3s",
+  },
+  {
+    id: 3,
+    name: "Jessica nguyen",
+    job: "Coach",
+    image: "/images/member/team3.jpg",
+    imageAlt: "Jessica nguyen - Coach",
+    socialLinks: [
+      { href: "/facebook.com", icon: "icon-facebook" },
+      { href: "/instagram.com", icon: "icon-instagram" },
+      { href: "/youtube.com", icon: "icon-linkedin2" },
+    ],
+    wowDelay: "0.5s",
+  },
+  {
+    id: 4,
+    name: "jenifer nolan",
+    job: "Co - Founder",
+    image: "/images/member/team4.png",
+    imageAlt: "jenifer nolan - Co Founder",
+    socialLinks: [
+      { href: "/facebook.com", icon: "icon-facebook" },
+      { href: "/linkedin.com", icon: "icon-linkedin2" },
+      { href: "/instagram.com", icon: "icon-instagram" },
+    ],
+    wowDelay: "0.7s",
+  },
+];
 
 export default function Team1() {
-	return (
-		<>
-
-			<div className="tf-widget-team main-content">
-				<div className="themeflat-container">
-					<div className="team-member">
-						<div className="title-box title-small center-title-box">
-							<span className="sub-title wow fadeInUp animated">Our team</span>
-							<h2 className="title-section wow fadeInUp animated">our member, couch</h2>
-						</div>
-						<div className="row team">
-							<div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
-								<div className="team-item wow fadeInUp animated " data-wow-delay="0.1s">
-									<div className="team-image">
-										<img src="/images/member/team1.jpg" alt="Team member" />
-										<div className="team-social">
-											<ul>
-												<li>
-													<Link href="/facebook.com"><i className="icon-facebook" /></Link>
-												</li>
-												<li>
-													<Link href="/twitter.com"><i className="icon-instagram" /></Link>
-												</li>
-												<li>
-													<Link href="/linkedin.com"><i className="icon-linkedin2" /></Link>
-												</li>
-											</ul>
-										</div>
-										
-									</div>
-									<h3 className="name-member">Chris pad</h3>
-									<h4 className="job">Co - Founder </h4>
-								</div>
-							</div>
-							<div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
-								<div className="team-item wow fadeInUp animated " data-wow-delay="0.3s">
-									<div className="team-image">
-										<img src="/images/member/team2.jpg" alt="Team member" />
-										<div className="team-social">
-											<ul>
-												<li>
-													<Link href="/facebook.com"><i className="icon-facebook" /></Link>
-												</li>
-												<li>
-													<Link href="/instagram.com"><i className="icon-instagram" /></Link>
-												</li>
-												<li>
-													<Link href="/youtube.com"><i className="icon-youtube" /></Link>
-												</li>
-											</ul>
-										</div>
-										
-									</div>
-									<h3 className="name-member">maverick</h3>
-									<h4 className="job">Manager</h4>
-								</div>
-							</div>
-							<div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
-								<div className="team-item wow fadeInUp animated " data-wow-delay="0.5s">
-									<div className="team-image">
-										<img src="/images/member/team3.jpg" alt="Team member" />
-										<div className="team-social">
-											<ul>
-												<li>
-													<Link href="/facebook.com"><i className="icon-facebook" /></Link>
-												</li>
-												<li>
-													<Link href="/instagram.com"><i className="icon-instagram" /></Link>
-												</li>
-												<li>
-													<Link href="/youtube.com"><i className="icon-linkedin2" /></Link>
-												</li>
-											</ul>
-										</div>
-										
-									</div>
-									<h3 className="name-member">Jessica nguyen</h3>
-									<h4 className="job">Coach</h4>
-								</div>
-							</div>
-							<div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
-								<div className="team-item wow fadeInUp animated " data-wow-delay="0.7s">
-									<div className="team-image">
-										<img src="/images/member/team4.png" alt="Team member" />
-										<div className="team-social">
-											<ul>
-												<li>
-													<Link href="/facebook.com"><i className="icon-facebook" /></Link>
-												</li>
-												<li>
-													<Link href="/linkedin.com"><i className="icon-linkedin2" /></Link>
-												</li>
-												<li>
-													<Link href="/instagram.com"><i className="icon-instagram" /></Link>
-												</li>
-											</ul>
-										</div>
-										
-									</div>
-									<h3 className="name-member">jenifer nolan</h3>
-									<h4 className="job">Co - Founder </h4>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</>
-	)
+  return (
+    <div className="tf-widget-team main-content">
+      <div className="themeflat-container">
+        <div className="team-member">
+          <div className="title-box title-small center-title-box">
+            <span className="sub-title wow fadeInUp animated">Our team</span>
+            <h2 className="title-section wow fadeInUp animated">our member, couch</h2>
+          </div>
+          <div className="row team">
+            {teamMembersData.map((member) => (
+              <div
+                key={member.id}
+                className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-3"
+              >
+                <div
+                  className="team-item wow fadeInUp animated"
+                  data-wow-delay={member.wowDelay}
+                >
+                  <div className="team-image">
+                    <img src={member.image} alt={member.imageAlt} />
+                    <div className="team-social">
+                      <ul>
+                        {member.socialLinks.map((social, index) => (
+                          <li key={index}>
+                            <Link href={social.href}>
+                              <i className={social.icon} />
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                  <h3 className="name-member">{member.name}</h3>
+                  <h4 className="job">{member.job}</h4>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 

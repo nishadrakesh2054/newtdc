@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Layout from "../../components/layout/Layout";
+import Breadcrum from "@/components/elements/Breadcrum";
 
 export default function Sponsors() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -19,30 +20,7 @@ export default function Sponsors() {
     <>
       <Layout headerStyle={1} footerStyle={1}>
         <div>
-          <div className="page-title page-title-blog">
-            <div className="themeflat-container">
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="page-title-heading">
-                    <h1 className="title">Become a Sponsor</h1>
-                  </div>
-                  <div className="breadcrumbs">
-                    <ul>
-                      <li>
-                        <Link href="/">Homepage</Link>
-                      </li>
-                      <li>
-                        <i className="icon-Arrow---Right-2" />
-                      </li>
-                      <li>
-                        <a>Sponsors</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Breadcrum title="Become a Sponsor" />
 
           {/* Sponsorship Form Section */}
 

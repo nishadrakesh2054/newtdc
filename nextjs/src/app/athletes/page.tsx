@@ -1,11 +1,50 @@
 "use client";
 
-import Link from "next/link";
 import Layout from "../../components/layout/Layout";
+import Breadcrum from "@/components/elements/Breadcrum";
 import { useState, useMemo } from "react";
+import Image from "next/image";
 
-// Athlete data with branch information
-const athletesData = [
+interface Athlete {
+  id: number;
+  name: string;
+  role: string;
+  image: string;
+  branch: string;
+  delay: string;
+}
+
+const COLORS = {
+  primary: "#0049be",
+  secondary: "#fec802",
+  white: "#ffffff",
+  text: "#5e6267",
+} as const;
+
+const STYLES = {
+  filtersContainer: {
+    display: "flex",
+    gap: "15px",
+    flexWrap: "wrap" as const,
+    justifyContent: "start" as const,
+    marginBottom: "40px",
+  },
+  filterButton: (isActive: boolean) => ({
+    cursor: "pointer" as const,
+    textDecoration: "none" as const,
+    backgroundColor: isActive ? COLORS.secondary : COLORS.primary,
+    color: isActive ? COLORS.primary : COLORS.white,
+  }),
+  emptyState: {
+    textAlign: "center" as const,
+    marginTop: "40px",
+    color: COLORS.text,
+  },
+} as const;
+
+const BRANCHES = ["All", "Main Branch", "Branch Office"] as const;
+
+const athletesData: Athlete[] = [
   {
     id: 1,
     name: "Bikash Thapa",
@@ -84,124 +123,74 @@ export default function Athletes() {
   }, [selectedBranch]);
 
   return (
-    <>
-      <Layout headerStyle={1} footerStyle={1}>
-        <div>
-          <div className="page-title">
-            <div className="themeflat-container">
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="page-title-heading">
-                    <h1 className="title">Athletes</h1>
-                  </div>
-                  {/* /.page-title-captions */}
-                  <div className="breadcrumbs">
-                    <ul>
-                      <li>
-                        <Link href="/">Homepage</Link>
-                      </li>
-                      <li>
-                        <i className="icon-Arrow---Right-2" />
-                      </li>
-                      <li>
-                        <a>Athletes</a>
-                      </li>
-                    </ul>
-                  </div>
-                  {/* /.breadcrumbs */}
-                </div>
-                {/* /.col-md-12 */}
-              </div>
-              {/* /.row */}
-            </div>
-            {/* /.container */}
-          </div>
-          {/* /.page-title */}
-          {/* Athletes Content */}
-          <div className="tf-widget-team main-content">
-            <div className="themeflat-container">
-              {/* Filter Buttons */}
-              <div
-                className="athletes-filters"
-                style={{
-                  display: "flex",
-                  gap: "15px",
-                  flexWrap: "wrap",
-                  justifyContent: "start",
-                  marginBottom: "40px",
-                }}
-              >
-                {["All", "Main Branch", "Branch Office"].map((branch) => (
+    <Layout headerStyle={1} footerStyle={1}>
+      <div>
+        <Breadcrum title="Athletes" />
+        <div className="tf-widget-team main-content">
+          <div className="themeflat-container">
+            <div className="athletes-filters" style={STYLES.filtersContainer}>
+              {BRANCHES.map((branch) => {
+                const isActive = selectedBranch === branch;
+                return (
                   <div key={branch} className="button">
                     <button
                       onClick={() => setSelectedBranch(branch)}
-                      className={`flat-button ${
-                        selectedBranch === branch ? "active" : ""
-                      }`}
-                      style={{
-                        cursor: "pointer",
-                        textDecoration: "none",
-                        backgroundColor:
-                          selectedBranch === branch ? "#fec802" : "#0049be",
-                        color:
-                          selectedBranch === branch ? "#0049be" : "#ffffff",
-                      }}
+                      className={`flat-button ${isActive ? "active" : ""}`}
+                      style={STYLES.filterButton(isActive)}
                     >
                       {branch}
                     </button>
                   </div>
-                ))}
-              </div>
+                );
+              })}
+            </div>
 
-              <div className="team-member">
-                <div className="row team">
-                  {filteredAthletes.map((athlete) => (
+            <div className="team-member">
+              <div className="row team">
+                {filteredAthletes.map((athlete) => (
+                  <div
+                    key={athlete.id}
+                    className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-3"
+                  >
                     <div
-                      key={athlete.id}
-                      className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-3"
+                      className="team-item wow fadeInUp animated"
+                      data-wow-delay={athlete.delay}
                     >
-                      <div
-                        className="team-item wow fadeInUp animated"
-                        data-wow-delay={athlete.delay}
-                      >
-                        <div className="team-image">
-                          <img src={athlete.image} alt="Team member" />
-                          <div className="team-social">
-                            <ul>
-                              <li>
-                                <h3 className="name-member text-light text-uppercase">
-                                  {athlete.name}
-                                </h3>
-                                <h4 className="job text-light">
-                                  {athlete.role}
-                                </h4>
-                              </li>
-                            </ul>
-                          </div>
+                      <div className="team-image">
+                        <Image
+                          src={athlete.image}
+                          alt={athlete.name}
+                          width={270}
+                          height={300}
+                          style={{ width: "100%", height: "auto", objectFit: "cover" }}
+                        />
+                        <div className="team-social">
+                          <ul>
+                            <li>
+                              <h3 className="name-member text-light text-uppercase">
+                                {athlete.name}
+                              </h3>
+                              <h4 className="job text-light">{athlete.role}</h4>
+                            </li>
+                          </ul>
                         </div>
                       </div>
                     </div>
-                  ))}
+                  </div>
+                ))}
 
-                  {filteredAthletes.length === 0 && (
-                    <div className="col-12">
-                      <p
-                        style={{
-                          textAlign: "center",
-                          marginTop: "40px",
-                          color: "#5e6267",
-                        }}
-                      >
-                        No athletes found for this branch.
-                      </p>
-                    </div>
-                  )}
-                </div>
+                {filteredAthletes.length === 0 && (
+                  <div className="col-12">
+                    <p style={STYLES.emptyState}>
+                      No athletes found for this branch.
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
         </div>
-      </Layout>
-    </>
+      </div>
+    </Layout>
   );
 }

@@ -2,248 +2,229 @@
 
 import Link from "next/link";
 import Layout from "../../components/layout/Layout";
+import Breadcrum from "@/components/elements/Breadcrum";
+import Image from "next/image";
+
+interface BlogPost {
+  id: number;
+  image: string;
+  imageAlt: string;
+  tag: string;
+  title: string;
+  href: string;
+}
+
+interface Category {
+  id: number;
+  name: string;
+  count: number;
+  href: string;
+}
+
+interface Tag {
+  id: number;
+  name: string;
+  href: string;
+}
+
+interface RecentPost {
+  id: number;
+  image: string;
+  imageAlt: string;
+  title: string;
+  date: string;
+  href: string;
+}
+
+const blogPosts: BlogPost[] = [
+  {
+    id: 1,
+    image: "/images/blog/1.png",
+    imageAlt: "Master Your Stroke: Essential Swimming Techniques for Competitive Swimmers",
+    tag: "Swimming",
+    title: "Master Your Stroke: Essential Swimming Techniques for Competitive Swimmers",
+    href: "/blog-single",
+  },
+  {
+    id: 2,
+    image: "/images/blog/2.png",
+    imageAlt: "Upcoming Football Events: Join Our Championship Tournament This Season",
+    tag: "Football",
+    title: "Upcoming Football Events: Join Our Championship Tournament This Season",
+    href: "/blog-single",
+  },
+];
+
+const categories: Category[] = [
+  { id: 1, name: "Training", count: 5, href: "/#" },
+  { id: 2, name: "Events", count: 4, href: "/#" },
+  { id: 3, name: "Football", count: 3, href: "/#" },
+  { id: 4, name: "Swimming", count: 2, href: "/#" },
+  { id: 5, name: "Athletics", count: 1, href: "/#" },
+];
+
+const tags: Tag[] = [
+  { id: 1, name: "Training", href: "/#" },
+  { id: 2, name: "Football", href: "/#" },
+  { id: 3, name: "Swimming", href: "/#" },
+  { id: 4, name: "Events", href: "/#" },
+  { id: 5, name: "Sports Camp", href: "/#" },
+];
+
+const recentPosts: RecentPost[] = [
+  {
+    id: 1,
+    image: "/images/blog/post-widget1.jpg",
+    imageAlt: "10 Essential Skills Every Young Athlete Should Master",
+    title: "10 Essential Skills Every Young Athlete Should Master",
+    date: "Oct 12, 2023",
+    href: "/blog-single",
+  },
+  {
+    id: 2,
+    image: "/images/blog/post-widget2.jpg",
+    imageAlt: "Nutrition Tips for Peak Athletic Performance",
+    title: "Nutrition Tips for Peak Athletic Performance",
+    date: "Oct 12, 2023",
+    href: "/blog-single",
+  },
+];
 
 export default function Blog() {
   return (
-    <>
-      <Layout headerStyle={1} footerStyle={1}>
-        <div>
-          <div className="page-title">
-            <div className="themeflat-container">
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="page-title-heading">
-                    <h1 className="title">latest news</h1>
-                  </div>
-                  {/* /.page-title-captions */}
-                  <div className="breadcrumbs">
-                    <ul>
+    <Layout headerStyle={1} footerStyle={1}>
+      <div>
+        <Breadcrum title="Latest News" />
+        <section className="main-content blog-posts">
+          <div className="themeflat-container">
+            <div className="row">
+              <div className="col-md-12 col-lg-9 col-xl-9 col-xxl-9 widget-blog-content">
+                <div className="post-wrap">
+                  {blogPosts.map((post) => (
+                    <article
+                      key={post.id}
+                      className="entry format-standard wow fadeInUp animated"
+                    >
+                      <div className="feature-post">
+                        <Image
+                          src={post.image}
+                          alt={post.imageAlt}
+                          width={800}
+                          height={400}
+                          style={{ width: "100%", height: "auto" }}
+                        />
+                      </div>
+                      <div className="main-post">
+                        <div className="tag">
+                          <ul>
+                            <li>
+                              <Link href={post.href}>{post.tag}</Link>
+                            </li>
+                          </ul>
+                        </div>
+                        <h2 className="entry-title">
+                          <Link href={post.href}>{post.title}</Link>
+                        </h2>
+                        <br />
+                        <Link className="more-link" href={post.href}>
+                          Read More
+                        </Link>
+                      </div>
+                    </article>
+                  ))}
+
+                  <div className="blog-pagination wow fadeInUp animated">
+                    <ul className="flat-pagination clearfix">
                       <li>
-                        <Link href="/">Homepage</Link>
+                        <Link href="/#">1</Link>
                       </li>
+                      <li className="active">2</li>
                       <li>
-                        {" "}
-                        <i className="icon-Arrow---Right-2" />
-                      </li>
-                      <li>
-                        <a>Latest News</a>
+                        <Link href="/#">
+                          <i className="icon-Arrow---Right-2" />
+                        </Link>
                       </li>
                     </ul>
                   </div>
-                  {/* /.breadcrumbs */}
                 </div>
-                {/* /.col-md-12 */}
               </div>
-              {/* /.row */}
-            </div>
-            {/* /.container */}
-          </div>
-          {/* /.page-title */}
-          {/* Blog Posts */}
-          <section className="main-content blog-posts">
-            <div className="themeflat-container">
-              <div className="row">
-                <div className="col-md-12 col-lg-9 col-xl-9 col-xxl-9 widget-blog-content">
-                  <div className="post-wrap">
-                    <article className="entry format-standard wow fadeInUp animated">
-                      <div className="feature-post">
-                        <img src="/images/blog/1.png" alt="image" />
-                      </div>
-                      {/* /.feature-post */}
-                      <div className="main-post">
-                        <div className="tag">
-                          <ul>
-                            <li>
-                              <Link href="/blog-single">Swimming</Link>
-                            </li>
-                          </ul>
-                        </div>
-                        <h2 className="entry-title">
-                          <Link href="/blog-single">
-                            Master Your Stroke: Essential Swimming Techniques
-                            for Competitive Swimmers
-                          </Link>
-                        </h2>
-                        <br />
-                        <Link className="more-link" href="/blog-single">
-                          Read More
-                        </Link>
-                        {/* /.entry-meta */}
-                      </div>
-                      {/* /.main-post */}
-                    </article>
-                    <article className="entry format-standard wow fadeInUp animated">
-                      <div className="feature-post">
-                        <img src="/images/blog/2.png" alt="image" />
-                      </div>
-                      {/* /.feature-post */}
-                      <div className="main-post">
-                        <div className="tag">
-                          <ul>
-                            <li>
-                              <Link href="/blog-single">Football</Link>
-                            </li>
-                          </ul>
-                        </div>
-                        <h2 className="entry-title">
-                          <Link href="/blog-single">
-                            Upcoming Football Events: Join Our Championship
-                            Tournament This Season
-                          </Link>
-                        </h2>
-                        <br />
-                        <Link className="more-link" href="/blog-single">
-                          Read More
-                        </Link>
-                        {/* /.entry-meta */}
-                      </div>
-                      {/* /.main-post */}
-                    </article>
-
-                    <div className="blog-pagination wow fadeInUp animated">
-                      <ul className="flat-pagination clearfix">
-                        <li>
-                          <Link href="/#">1</Link>
-                        </li>
-                        <li className="active">2</li>
-                        <li>
-                          <Link href="/#">
+              <div className="col-md-12 col-lg-3 col-xl-3 col-xxl-3">
+                <div className="sidebar">
+                  <div className="widget widget-categories">
+                    <h5 className="widget-title">Category</h5>
+                    <ul>
+                      {categories.map((category) => (
+                        <li key={category.id}>
+                          <Link href={category.href}>
                             <i className="icon-Arrow---Right-2" />
+                            {category.name}
+                            <span className="pull-right">{category.count}</span>
                           </Link>
                         </li>
-                      </ul>
-                    </div>
-                    {/* /.blog-pagination */}
+                      ))}
+                    </ul>
                   </div>
-                </div>
-                {/* /.col-md-9 */}
-                <div className="col-md-12 col-lg-3 col-xl-3 col-xxl-3">
-                  <div className="sidebar">
-                    {/* /.widget-search */}
-                    <div className="widget widget-categories">
-                      <h5 className="widget-title">Category</h5>
+                  <div className="widget widget-tags">
+                    <h5 className="widget-title">Popular Tags</h5>
+                    <div className="tag">
                       <ul>
-                        <li>
-                          <Link href="/#">
-                            <i className="icon-Arrow---Right-2" />
-                            Training<span className="pull-right">5</span>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/#">
-                            <i className="icon-Arrow---Right-2" />
-                            Events<span className="pull-right">4</span>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/#">
-                            <i className="icon-Arrow---Right-2" />
-                            Football<span className="pull-right">3</span>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/#">
-                            <i className="icon-Arrow---Right-2" />
-                            Swimming<span className="pull-right">2</span>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/#">
-                            <i className="icon-Arrow---Right-2" />
-                            Athletics<span className="pull-right">1</span>
-                          </Link>
-                        </li>
+                        {tags.map((tag) => (
+                          <li key={tag.id}>
+                            <Link href={tag.href}>{tag.name}</Link>
+                          </li>
+                        ))}
                       </ul>
                     </div>
-                    {/* /.widget-categories */}
-                    <div className="widget widget-tags">
-                      <h5 className="widget-title">Popular Tags</h5>
-                      <div className="tag">
-                        <ul>
-                          <li>
-                            <Link href="/#">Training</Link>
-                          </li>
-                          <li>
-                            <Link href="/#">Football</Link>
-                          </li>
-                          <li>
-                            <Link href="/#">Swimming</Link>
-                          </li>
-                          <li>
-                            <Link href="/#">Events</Link>
-                          </li>
-                          <li>
-                            <Link href="/#">Sports Camp</Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    {/* /.widget-tags */}
-                    <div className="widget widget-popular-news">
-                      <h5 className="widget-title">Recent Posts</h5>
-                      <ul className="popular-news clearfix">
-                        <li>
-                          <div className="thumb">
-                            <img
-                              src="/images/blog/post-widget1.jpg"
-                              alt="image"
-                            />
-                          </div>
-                          <div className="text">
-                            <h6>
-                              <Link href="/blog-single">
-                                10 Essential Skills Every Young Athlete Should
-                                Master
-                              </Link>
-                            </h6>
-                            <p className="date-popular-news">Oct 12, 2023</p>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="thumb">
-                            <img
-                              src="/images/blog/post-widget2.jpg"
-                              alt="image"
-                            />
-                          </div>
-                          <div className="text">
-                            <h6>
-                              <Link href="/blog-single">
-                                Nutrition Tips for Peak Athletic Performance
-                              </Link>
-                            </h6>
-                            <p className="date-popular-news">Oct 12, 2023</p>
-                          </div>
-                        </li>
-                      </ul>
-                      {/* /.popular-news */}
-                    </div>
-                    {/* /.widget-popular-news */}
-                    <div className="widget widget-form-subscribe">
-                      <h3>Subscribe For Daily Newsletter</h3>
-                      <img src="/images/blog/subscribe.png" alt="image" />
-                      <form action="/">
-                        <input
-                          type="email"
-                          id="email-sb"
-                          name="email"
-                          placeholder="Your email address"
-                        />
-                        <input type="submit" defaultValue="Follow" />
-                      </form>
-                    </div>
-                    {/* /.widget-Archive */}
                   </div>
-                  {/* /.sidebar */}
+                  <div className="widget widget-popular-news">
+                    <h5 className="widget-title">Recent Posts</h5>
+                    <ul className="popular-news clearfix">
+                      {recentPosts.map((post) => (
+                        <li key={post.id}>
+                          <div className="thumb">
+                            <Image
+                              src={post.image}
+                              alt={post.imageAlt}
+                              width={80}
+                              height={80}
+                              style={{ width: "100%", height: "auto", objectFit: "cover" }}
+                            />
+                          </div>
+                          <div className="text">
+                            <h6>
+                              <Link href={post.href}>{post.title}</Link>
+                            </h6>
+                            <p className="date-popular-news">{post.date}</p>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="widget widget-form-subscribe">
+                    <h3>Subscribe For Daily Newsletter</h3>
+                    <Image
+                      src="/images/blog/subscribe.png"
+                      alt="Subscribe"
+                      width={300}
+                      height={200}
+                      style={{ width: "100%", height: "auto" }}
+                    />
+                    <form action="/">
+                      <input
+                        type="email"
+                        id="email-sb"
+                        name="email"
+                        placeholder="Your email address"
+                      />
+                      <input type="submit" defaultValue="Follow" />
+                    </form>
+                  </div>
                 </div>
-                {/* /.col-md-3 */}
               </div>
-              {/* /.row */}
             </div>
-            {/* /.container */}
-          </section>
-        </div>
-      </Layout>
-    </>
+          </div>
+        </section>
+      </div>
+    </Layout>
   );
 }

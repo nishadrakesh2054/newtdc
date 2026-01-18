@@ -541,6 +541,7 @@ input[type="color"],
   justify-content: center;
   align-items: center;
   gap: 21px;
+  font-size: 14px;
 }
 
 .header-top-inner .address i {
@@ -549,8 +550,8 @@ input[type="color"],
 
 .header-top-inner .address a {
   color: var(--black);
-  /* font-weight: 600;
-  font-size: 15px; */
+  font-weight: 400;
+  font-size: 15px;
 }
 
 .social-icon a i {
@@ -561,6 +562,7 @@ input[type="color"],
   display: flex;
   align-items: center;
   gap: 39px;
+  font-size: 15px;
 }
 
 .header-top-inner .address .contact {
@@ -581,7 +583,7 @@ input[type="color"],
 }
 
 .header-top {
-  padding: 9px 0;
+  padding: 4px 0;
   background-color: var(--sec);
 }
 
@@ -1398,17 +1400,16 @@ ul.submenu li:hover {
 /* Page Title
 -------------------------------------------------------------- */
 .page-title {
-  background: url(/images/retinal/pagetitle.png) no-repeat center top;
+  background: url(/images/retinal/breadcrum.png) no-repeat center center;
   background-size: cover;
-  padding: 146px 0 97px 0;
   text-align: center;
   position: relative;
-  background-attachment: fixed;
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
-}
-.page-title-blog {
-  padding: 124px 0 119px 0;
+  min-height:355px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .page-title:before {
@@ -1423,10 +1424,10 @@ ul.submenu li:hover {
 
 .page-title-heading h1 {
   font-family: "Oswald", sans-serif;
-  font-size: 80px;
-  line-height: 88px;
-  font-weight: 400;
-  color: var(--primary);
+  font-size: 60px;
+  line-height: 60px;
+  font-weight: 500;
+  color: var(--sec);
   padding: 0 0;
   text-transform: uppercase;
   margin-bottom: 11px;
@@ -1445,7 +1446,7 @@ ul.submenu li:hover {
 }
 
 .breadcrumbs a {
-  font-size: 18px;
+  font-size: 16px;
   padding: 5px 0;
   font-weight: 400;
   color: var(--white) !important;
@@ -1459,6 +1460,10 @@ ul.submenu li:hover {
 
 /* Blog
 -------------------------------------------------------------- */
+.page-title-blog {
+    padding: 124px 0 119px 0;
+  }
+  
 .widget-blog-content {
   padding-right: 43px;
 }

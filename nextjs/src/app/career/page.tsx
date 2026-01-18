@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Layout from "../../components/layout/Layout";
+import Breadcrum from "@/components/elements/Breadcrum";
 
 const CheckmarkIcon = () => (
   <svg
@@ -140,30 +141,7 @@ export default function Career() {
     <>
       <Layout headerStyle={1} footerStyle={1}>
         <div>
-          <div className="page-title page-title-blog">
-            <div className="themeflat-container">
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="page-title-heading">
-                    <h1 className="title">Careers</h1>
-                  </div>
-                  <div className="breadcrumbs">
-                    <ul>
-                      <li>
-                        <Link href="/">Homepage</Link>
-                      </li>
-                      <li>
-                        <i className="icon-Arrow---Right-2" />
-                      </li>
-                      <li>
-                        <a>Careers</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Breadcrum title="Careers" />
 
           {/* Job Vacancies Section */}
           <div

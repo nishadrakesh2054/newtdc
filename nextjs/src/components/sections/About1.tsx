@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function About1() {
   return (
@@ -63,12 +64,13 @@ export default function About1() {
                   <div className="line" />
                   <div className="about-button-group">
                     <div className="button">
-                      <Link href="/about" className="flat-button">
-                        Find out more
+                      <Link href="/about" className="flat-button d-flex align-items-center  gap-2">
+                        Find out more 
+                        <span className="arrow-right"><Image src="/img/logo/button-img.png" alt="" width={15} height={15} /></span>
                       </Link>
                     </div>
                     <div className="infor-about">
-                      <img src="/images/about/info.png" alt="" />
+                      <img src="/images/about/director.png" alt="" />
                       <div className="info">
                         <div className="name wow fadeInUp animated">
                           Barun Khadka

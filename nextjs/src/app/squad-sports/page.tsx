@@ -3,6 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import Layout from "../../components/layout/Layout";
+import Breadcrum from "@/components/elements/Breadcrum";
+import Image from "next/image";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Camp data
 const footballData = [
@@ -124,6 +128,135 @@ const introTexts = {
     "Our Basketball Academy Program offers comprehensive training for players of all levels, from beginners to advanced athletes. With expert coaching and a focus on developing technique, agility, and strategic play, we help participants enhance their skills and enjoy the game. Whether you are picking up a ball for the first time or aiming to compete at a higher level, our program provides the perfect environment for growth and success. Join us and elevate your basketball game!",
 };
 
+// Gallery images for each category
+const galleryImages = {
+  football: [
+    "/images/ev/1.png",
+    "/images/ev/2.png",
+    "/images/ev/3.png",
+    "/images/ev/4.png",
+    "/images/ev/5.png",
+    "/images/ev/6.png",
+    "/images/ev/7.png",
+    "/images/ev/8.png",
+  ],
+  futsal: [
+    "/images/ev/5.png",
+    "/images/ev/6.png",
+    "/images/ev/7.png",
+    "/images/ev/8.png",
+    "/images/ev/1.png",
+    "/images/ev/2.png",
+    "/images/ev/3.png",
+    "/images/ev/4.png",
+  ],
+  cricket: [
+    "/images/ev/3.png",
+    "/images/ev/4.png",
+    "/images/ev/5.png",
+    "/images/ev/6.png",
+    "/images/ev/7.png",
+    "/images/ev/8.png",
+    "/images/ev/1.png",
+    "/images/ev/2.png",
+  ],
+  basketball: [
+    "/images/ev/2.png",
+    "/images/ev/3.png",
+    "/images/ev/4.png",
+    "/images/ev/5.png",
+    "/images/ev/6.png",
+    "/images/ev/7.png",
+    "/images/ev/8.png",
+    "/images/ev/1.png",
+  ],
+};
+
+// Swiper options for gallery slider
+const gallerySwiperOptions = {
+  modules: [Autoplay, Pagination, Navigation],
+  slidesPerView: 4,
+  spaceBetween: 15,
+  autoplay: {
+    delay: 2000,
+    disableOnInteraction: false,
+  },
+  loop: true,
+  breakpoints: {
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 10,
+    },
+    640: {
+      slidesPerView: 2,
+      spaceBetween: 10,
+    },
+    768: {
+      slidesPerView: 3,
+      spaceBetween: 15,
+    },
+    1024: {
+      slidesPerView: 4,
+      spaceBetween: 15,
+    },
+  },
+};
+
+// Image Gallery Component with Slider
+const ImageGallery = ({
+  images,
+  title,
+}: {
+  images: string[];
+  title: string;
+}) => (
+  <div className="row" style={{ marginTop: "40px" }}>
+    <div className="col-md-12">
+      <div className="event-gallery">
+        <h6
+          className="wow fadeInUp animated text-uppercase"
+          style={{
+            color: "var(--primary)",
+            fontWeight: "700",
+            marginBottom: "30px",
+            textAlign: "start",
+          }}
+        >
+          {title}
+        </h6>
+        <Swiper {...gallerySwiperOptions} className="gallery-swiper">
+          {images.map((image, index) => (
+            <SwiperSlide key={index}>
+              <div
+                className="gallery-item"
+                style={{
+                  width: "100%",
+                  aspectRatio: "400 / 340",
+                  overflow: "hidden",
+                }}
+              >
+                <Image
+                  src={image}
+                  alt={`Gallery ${index + 1}`}
+                  width={400}
+                  height={340}
+                  className="wow fadeInUp animated"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                  }}
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </div>
+  </div>
+);
+
 export default function SquadSports() {
   const [activeFilter, setActiveFilter] = useState<
     "football" | "futsal" | "cricket" | "basketball"
@@ -146,6 +279,8 @@ export default function SquadSports() {
 
   const currentData = getCurrentData();
   const currentIntroText = introTexts[activeFilter];
+  const currentGalleryImages = galleryImages[activeFilter];
+  const galleryTitle = `Some Glimpse Of Our ${activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)} Programs`;
 
   const renderContent = (data: typeof footballData) => {
     return data.map((item, index) => {
@@ -226,7 +361,6 @@ export default function SquadSports() {
               style={{
                 position: "relative",
                 overflow: "hidden",
-                borderRadius: "8px",
                 boxShadow: "0 10px 30px rgba(0, 0, 0, 0.15)",
                 transition: "transform 0.3s ease, box-shadow 0.3s ease",
               }}
@@ -241,9 +375,11 @@ export default function SquadSports() {
                   "0 10px 30px rgba(0, 0, 0, 0.15)";
               }}
             >
-              <img
+              <Image
                 src={item.image}
                 alt={item.title}
+                width={600}
+                height={400}
                 className={
                   isEven
                     ? "wow fadeInRight animated"
@@ -251,6 +387,7 @@ export default function SquadSports() {
                 }
                 style={{
                   width: "100%",
+                  height: "auto",
                   display: "block",
                   transition: "transform 0.3s ease",
                 }}
@@ -318,44 +455,16 @@ export default function SquadSports() {
   };
 
   return (
-    <>
-      <Layout headerStyle={1} footerStyle={1}>
+    <Layout headerStyle={1} footerStyle={1}>
         <div>
-          <div className="page-title">
-            <div className="themeflat-container">
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="page-title-heading">
-                    <h1 className="title">Squad Sports</h1>
-                  </div>
-                  {/* /.page-title-captions */}
-                  <div className="breadcrumbs">
-                    <ul>
-                      <li>
-                        <Link href="/">Homepage</Link>
-                      </li>
-                      <li>
-                        <i className="icon-Arrow---Right-2" />
-                      </li>
-                      <li>
-                        <Link href="/#">Academy</Link>
-                      </li>
-                      <li>
-                        <i className="icon-Arrow---Right-2" />
-                      </li>
-                      <li>
-                        <a>Squad Sports</a>
-                      </li>
-                    </ul>
-                  </div>
-                  {/* /.breadcrumbs */}
-                </div>
-                {/* /.col-md-12 */}
-              </div>
-              {/* /.row */}
-            </div>
-            {/* /.container */}
-          </div>
+          <Breadcrum 
+            title="Squad Sports"
+            breadcrumbs={[
+              { label: "Homepage", href: "/" },
+              { label: "Academy", href: "/#" },
+              { label: "Squad Sports" }
+            ]}
+          />
 
           <div className="tf-widget-events">
             <div className="themeflat-container">
@@ -412,7 +521,6 @@ export default function SquadSports() {
                   marginBottom: "40px",
                   padding: "30px",
                   backgroundColor: "#f8f9fa",
-                  borderRadius: "8px",
                 }}
               >
                 <p
@@ -430,10 +538,12 @@ export default function SquadSports() {
 
               {/* Render Content */}
               {renderContent(currentData)}
+
+              {/* Image Gallery */}
+              <ImageGallery images={currentGalleryImages} title={galleryTitle} />
             </div>
           </div>
         </div>
       </Layout>
-    </>
   );
 }

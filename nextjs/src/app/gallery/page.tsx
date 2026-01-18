@@ -1,27 +1,122 @@
 "use client";
 
-import Link from "next/link";
 import Layout from "../../components/layout/Layout";
-import { useState, useMemo } from "react";
+import Breadcrum from "@/components/elements/Breadcrum";
+import { useState, useMemo, useCallback } from "react";
+import Image from "next/image";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import galleryData from "../../data/gallery.json";
+
+const COLORS = {
+  primary: "#0049be",
+  secondary: "#fec802",
+  white: "#ffffff",
+  text: "#5e6267",
+  overlay: "rgba(0, 0, 0, 0.8)",
+  modalBg: "rgba(0, 0, 0, 0.8)",
+} as const;
+
+const STYLES = {
+  filtersContainer: {
+    display: "flex",
+    gap: "15px",
+    flexWrap: "wrap" as const,
+    justifyContent: "start" as const,
+  },
+  filterButton: (isActive: boolean) => ({
+    cursor: "pointer" as const,
+    textDecoration: "none" as const,
+    backgroundColor: isActive ? COLORS.secondary : COLORS.primary,
+    color: isActive ? COLORS.primary : COLORS.white,
+  }),
+  galleryGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+    gap: "30px",
+    marginTop: "40px",
+  },
+  galleryItem: {
+    position: "relative" as const,
+    overflow: "hidden" as const,
+    cursor: "pointer" as const,
+   transition: "transform 0.3s ease",
+  },
+  imageOverlay: {
+    position: "absolute" as const,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    background: `linear-gradient(to top, ${COLORS.overlay}, transparent)`,
+    padding: "20px",
+    color: COLORS.white,
+  },
+  imageTitle: {
+    color: COLORS.white,
+    margin: "0 0 5px 0",
+    fontSize: "18px",
+  },
+  emptyState: {
+    textAlign: "center" as const,
+    marginTop: "40px",
+    color: COLORS.text,
+  },
+  modalOverlay: {
+    position: "fixed" as const,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: COLORS.modalBg,
+    zIndex: 9999,
+    display: "flex",
+    alignItems: "center" as const,
+    justifyContent: "center" as const,
+    padding: "20px",
+    overflow: "auto" as const,
+  },
+  modalContent: {
+    width: "100%",
+    maxWidth: "1200px",
+    position: "relative" as const,
+    maxHeight: "90vh",
+    margin: "auto",
+  },
+  closeButton: {
+    position: "absolute" as const,
+    top: "10px",
+    right: "10px",
+    background: "var(--sec)",
+    border: "none",
+    color: "var(--primary)",
+    width: "40px",
+    height: "40px",
+    borderRadius: "50%",
+    cursor: "pointer" as const,
+    fontSize: "30px",
+    fontWeight: "normal" as const,
+    display: "flex",
+    alignItems: "center" as const,
+    justifyContent: "center" as const,
+    zIndex: 10000,
+    transition: "all 0.3s ease",
+    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.3)",
+    lineHeight: "1",
+  },
+} as const;
 
 export default function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Get unique categories
   const categories = useMemo(() => {
-    const cats = [
+    return [
       "All",
       ...Array.from(new Set(galleryData.map((item) => item.category))),
     ];
-    return cats;
   }, []);
 
-  // Filter images based on selected category
   const filteredImages = useMemo(() => {
     if (selectedCategory === "All") {
       return galleryData;
@@ -29,56 +124,51 @@ export default function Gallery() {
     return galleryData.filter((item) => item.category === selectedCategory);
   }, [selectedCategory]);
 
-  // All images for lightbox (used when clicking on any image)
-  const allGalleryImages = galleryData.map((item) => ({
-    original: item.image,
-    thumbnail: item.image,
-    description: item.title,
-  }));
+  const allGalleryImages = useMemo(
+    () =>
+      galleryData.map((item) => ({
+        original: item.image,
+        thumbnail: item.image,
+        description: item.title,
+      })),
+    []
+  );
 
-  const handleImageClick = (index: number) => {
-    // Find the actual index in the full gallery
-    const clickedImage = filteredImages[index];
-    const actualIndex = galleryData.findIndex(
-      (item) => item.id === clickedImage.id
-    );
-    setCurrentImageIndex(actualIndex);
-    setIsLightboxOpen(true);
-  };
+  const handleImageClick = useCallback(
+    (index: number) => {
+      const clickedImage = filteredImages[index];
+      const actualIndex = galleryData.findIndex(
+        (item) => item.id === clickedImage.id
+      );
+      setCurrentImageIndex(actualIndex);
+      setIsLightboxOpen(true);
+    },
+    [filteredImages]
+  );
+
+  const handleCloseLightbox = useCallback(() => {
+    setIsLightboxOpen(false);
+  }, []);
+
+  const handleItemHover = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>, scale: number) => {
+      e.currentTarget.style.transform = `scale(${scale})`;
+    },
+    []
+  );
+
+  const handleCloseButtonHover = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>, background: string) => {
+      e.currentTarget.style.background = background;
+      e.currentTarget.style.transform = background === COLORS.white ? "scale(1.1)" : "scale(1)";
+    },
+    []
+  );
 
   return (
-    <>
-      <Layout headerStyle={1} footerStyle={1}>
+    <Layout headerStyle={1} footerStyle={1}>
         <div>
-          <div className="page-title">
-            <div className="themeflat-container">
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="page-title-heading">
-                    <h1 className="title">Gallery</h1>
-                  </div>
-                  {/* /.page-title-captions */}
-                  <div className="breadcrumbs">
-                    <ul>
-                      <li>
-                        <Link href="/">Homepage</Link>
-                      </li>
-                      <li>
-                        <i className="icon-Arrow---Right-2" />
-                      </li>
-                      <li>
-                        <a>Gallery</a>
-                      </li>
-                    </ul>
-                  </div>
-                  {/* /.breadcrumbs */}
-                </div>
-                {/* /.col-md-12 */}
-              </div>
-              {/* /.row */}
-            </div>
-            {/* /.container */}
-          </div>
+          <Breadcrum title="Gallery" />
           {/* /.page-title */}
           {/* Gallery Content */}
           <section className="main-content">
@@ -86,75 +176,38 @@ export default function Gallery() {
               <div className="row">
                 <div className="col-md-12">
                   <div className="content-section wow fadeInUp animated">
-                    {/* Filter Buttons */}
-                    <div
-                      className="gallery-filters"
-                      style={{
-                        display: "flex",
-                        gap: "15px",
-                        flexWrap: "wrap",
-                        justifyContent: "start",
-                      }}
-                    >
-                      {categories.map((category) => (
-                        <div key={category} className="button">
-                          <button
-                            onClick={() => setSelectedCategory(category)}
-                            className={`flat-button ${
-                              selectedCategory === category ? "active" : ""
-                            }`}
-                            style={{
-                              cursor: "pointer",
-                              textDecoration: "none",
-                              backgroundColor:
-                                selectedCategory === category
-                                  ? "#fec802"
-                                  : "#0049be",
-                              color:
-                                selectedCategory === category
-                                  ? "#0049be"
-                                  : "#ffffff",
-                            }}
-                          >
-                            {category}
-                          </button>
-                        </div>
-                      ))}
+                    <div className="gallery-filters" style={STYLES.filtersContainer}>
+                      {categories.map((category) => {
+                        const isActive = selectedCategory === category;
+                        return (
+                          <div key={category} className="button">
+                            <button
+                              onClick={() => setSelectedCategory(category)}
+                              className={`flat-button ${isActive ? "active" : ""}`}
+                              style={STYLES.filterButton(isActive)}
+                            >
+                              {category}
+                            </button>
+                          </div>
+                        );
+                      })}
                     </div>
 
-                    {/* Gallery Grid */}
-                    <div
-                      className="gallery-grid"
-                      style={{
-                        display: "grid",
-                        gridTemplateColumns:
-                          "repeat(auto-fill, minmax(300px, 1fr))",
-                        gap: "30px",
-                        marginTop: "40px",
-                      }}
-                    >
+                    <div className="gallery-grid" style={STYLES.galleryGrid}>
                       {filteredImages.map((item, index) => (
                         <div
                           key={item.id}
                           className="gallery-item"
                           onClick={() => handleImageClick(index)}
-                          style={{
-                            position: "relative",
-                            overflow: "hidden",
-                            cursor: "pointer",
-                            borderRadius: "8px",
-                            transition: "transform 0.3s ease",
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.transform = "scale(1.05)";
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.transform = "scale(1)";
-                          }}
+                          style={STYLES.galleryItem}
+                          onMouseEnter={(e) => handleItemHover(e, 1.05)}
+                          onMouseLeave={(e) => handleItemHover(e, 1)}
                         >
-                          <img
+                          <Image
                             src={item.image}
                             alt={item.title}
+                            width={300}
+                            height={300}
                             style={{
                               width: "100%",
                               height: "auto",
@@ -162,41 +215,15 @@ export default function Gallery() {
                               display: "block",
                             }}
                           />
-                          <div
-                            style={{
-                              position: "absolute",
-                              bottom: 0,
-                              left: 0,
-                              right: 0,
-                              background:
-                                "linear-gradient(to top, rgba(0,0,0,0.8), transparent)",
-                              padding: "20px",
-                              color: "#fff",
-                            }}
-                          >
-                            <h4
-                              style={{
-                                color: "#fff",
-                                margin: "0 0 5px 0",
-                                fontSize: "18px",
-                              }}
-                            >
-                              {item.title}
-                            </h4>
-                         
+                          <div style={STYLES.imageOverlay}>
+                            <h4 style={STYLES.imageTitle}>{item.title}</h4>
                           </div>
                         </div>
                       ))}
                     </div>
 
                     {filteredImages.length === 0 && (
-                      <p
-                        style={{
-                          textAlign: "center",
-                          marginTop: "40px",
-                          color: "#5e6267",
-                        }}
-                      >
+                      <p style={STYLES.emptyState}>
                         No images found in this category.
                       </p>
                     )}
@@ -207,67 +234,19 @@ export default function Gallery() {
           </section>
         </div>
 
-        {/* Lightbox Modal */}
         {isLightboxOpen && (
-          <div
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backgroundColor: "rgba(0, 0, 0, 0.8)",
-              zIndex: 9999,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "20px",
-              overflow: "auto",
-            }}
-            onClick={() => setIsLightboxOpen(false)}
-          >
+          <div style={STYLES.modalOverlay} onClick={handleCloseLightbox}>
             <div
-              style={{
-                width: "100%",
-                maxWidth: "1200px",
-                position: "relative",
-                maxHeight: "90vh",
-                margin: "auto",
-              }}
+              style={STYLES.modalContent}
               onClick={(e) => e.stopPropagation()}
             >
               <button
-                onClick={() => setIsLightboxOpen(false)}
-                style={{
-                  position: "absolute",
-                  top: "10px",
-                  right: "10px",
-                  background: "var(--sec)",
-                  border: "none",
-                  color: "var(--primary)",
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "50%",
-                  cursor: "pointer",
-                  fontSize: "30px",
-                  fontWeight: "nor",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  zIndex: 10000,
-                  transition: "all 0.3s ease",
-                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.3)",
-                  lineHeight: "1",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "#fff";
-                  e.currentTarget.style.transform = "scale(1.1)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background =
-                    "rgba(255, 255, 255, 0.95)";
-                  e.currentTarget.style.transform = "scale(1)";
-                }}
+                onClick={handleCloseLightbox}
+                style={STYLES.closeButton}
+                onMouseEnter={(e) => handleCloseButtonHover(e, COLORS.white)}
+                onMouseLeave={(e) =>
+                  handleCloseButtonHover(e, "rgba(255, 255, 255, 0.95)")
+                }
               >
                 ×
               </button>
@@ -285,6 +264,5 @@ export default function Gallery() {
           </div>
         )}
       </Layout>
-    </>
   );
 }
