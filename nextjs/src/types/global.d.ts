@@ -3,8 +3,7 @@ declare module "wowjs" {
     constructor(options?: { live?: boolean });
     init(): void;
   }
-  const WOWClass: typeof WOW;
-  export default WOWClass;
+  export default WOW;
 }
 
 // ModalVideo types are handled by @types/react-modal-video package

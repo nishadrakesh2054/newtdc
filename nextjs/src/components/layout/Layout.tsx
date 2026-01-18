@@ -28,8 +28,8 @@ export default function Layout({
       // Dynamic import for wowjs to avoid SSR issues
       const loadWOW = async () => {
         try {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const WOWModule: any = await import("wowjs");
+          // @ts-expect-error - wowjs module type declaration exists in global.d.ts
+          const WOWModule = await import("wowjs");
           // wowjs exports WOW class directly or as default
           const WOW =
             WOWModule.WOW || WOWModule.default?.WOW || WOWModule.default;
