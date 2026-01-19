@@ -52,7 +52,7 @@ export default function About1() {
                     </h2>
                   </div>
                   {/* header style v1 */}
-                  <p className="post wow fadeInUp animated">
+                  <p className="post wow fadeInUp animated p-text">
                     THUNDERBOLTS DEVELOPMENT CENTER (TDC) is Nepal&apos;s first
                     international-standard sports and esports academy, dedicated
                     to nurturing talent and fostering excellence. TDC offers a

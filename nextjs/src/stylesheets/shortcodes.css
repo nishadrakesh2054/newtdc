@@ -69,11 +69,12 @@
 }
 
 p.post {
-  font-family: "Jost", sans-serif;
   font-size: 18px;
   font-weight: 400;
   color: var(--black);
-  line-height: 28px;
+  line-height: 1.7;
+  text-align: justify;
+  font-family: var(--montserrat) !important;
 }
 
 /* Background color */
@@ -785,6 +786,7 @@ span.flat-sub-slider {
 .event-detail-content p.post {
   color: var(--secondary);
   margin-bottom: 32px;
+  font-family: var(--poppins) !important;
 }
 
 .event-detail-content ul > li > span {
@@ -1171,9 +1173,10 @@ span.flat-sub-slider {
 .about-box p.post {
   max-width: 522px;
   color: var(--secondary);
+  font-family: var(--poppins) !important;
 }
 
-.infor-about img {
+.infor-about img {  font-family: var(--poppins) !important; text-align: justify;
   width: 52px;
   height: 52px;
   margin-right: 12px;
@@ -1583,6 +1586,7 @@ p.testimonial {
 .tf-testimonial-content .user-info .info p.post {
   color: var(--white);
   display: inline-block;
+  font-family: var(--montserrat) !important;
 }
 
 .content .description {
@@ -2207,9 +2211,7 @@ select.tb-my-input {
   font-family: "icomoon";
   content: "\e900";
 }
-select#sexs {
-  -webkit-appearance: none;
-}
+
 .tf-widget-form-contact {
   position: relative;
 }
@@ -2391,6 +2393,7 @@ select#sexs {
 .mission-tab .tab-content .post {
   color: var(--secondary);
   margin-bottom: 32px;
+  font-family:'Poppins', sans-serif;
 }
 
 .mission-tab .tab-content ul > li > span {
@@ -3350,7 +3353,6 @@ span.countdown__value {
   border-radius: 4px;
   opacity: 0;
   visibility: hidden;
-  webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
@@ -3699,7 +3701,6 @@ span.countdown__value {
   font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-line-clamp: 2;
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }

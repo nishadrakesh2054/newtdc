@@ -16,7 +16,7 @@ const tennisData = [
     age: "6 – 10 years old",
     description:
       "Our Grassroots program is designed to introduce young athletes to the fundamentals of sports in a fun and engaging environment. Through age-appropriate training and activities, we nurture their passion for sports while building essential skills. Athletes in this category will have the opportunity to participate in beginner and non-beginner groups, ensuring tailored coaching that caters to their individual needs and abilities.",
-    image: "/images/camp/wintercmp.jpg",
+    image: "/img/academy/tennis2.png",
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const tennisData = [
     age: "11 – 15 years old",
     description:
       "The Intermediate program focuses on refining skills and enhancing performance for young athletes ready to take their game to the next level. With a more structured approach, this level emphasizes skill development, teamwork, and competition. Athletes can choose between beginner and non-beginner groups to ensure they receive the right support and challenge, preparing them for future sporting endeavors.",
-    image: "/images/camp/spring.jpg",
+    image: "/img/academy/tennis3.png",
   },
   {
     id: 3,
@@ -236,10 +236,8 @@ export default function IndividualSports() {
             </h4>
 
             <p
-              className="post wow fadeInUp animated"
-              style={{
-                textAlign: "justify",
-              }}
+              className="post wow fadeInUp animated p-text"
+           
             >
               {item.description}
             </p>
@@ -425,11 +423,8 @@ export default function IndividualSports() {
                   backgroundColor: "#f8f9fa",
                 }}
               >
-                <p
-                  style={{
-                    textAlign: "justify",
-                    margin: 0,
-                  }}
+                <p className="post wow fadeInUp animated p-text"
+                 
                 >
                   {currentIntroText}
                 </p>

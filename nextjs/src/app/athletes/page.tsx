@@ -42,7 +42,7 @@ const STYLES = {
   },
 } as const;
 
-const BRANCHES = ["All", "Main Branch", "Branch Office"] as const;
+const BRANCHES = ["All", "TDC's Athletes", "LFES Athletes"] as const;
 
 const athletesData: Athlete[] = [
   {
@@ -50,7 +50,7 @@ const athletesData: Athlete[] = [
     name: "Bikash Thapa",
     role: "Forward",
     image: "/images/member/team1.jpg",
-    branch: "Main Branch",
+    branch: "TDC's Athletes",
     delay: "0.1s",
   },
   {
@@ -58,7 +58,7 @@ const athletesData: Athlete[] = [
     name: "Rajan Shrestha",
     role: "Midfielder",
     image: "/images/member/team2.jpg",
-    branch: "Main Branch",
+    branch: "TDC's Athletes",
     delay: "0.3s",
   },
   {
@@ -66,7 +66,7 @@ const athletesData: Athlete[] = [
     name: "Suman Tamang",
     role: "Defender",
     image: "/images/member/team3.jpg",
-    branch: "Main Branch",
+    branch: "TDC's Athletes",
     delay: "0.5s",
   },
   {
@@ -74,7 +74,7 @@ const athletesData: Athlete[] = [
     name: "Niraj Gurung",
     role: "Goalkeeper",
     image: "/images/member/team4.png",
-    branch: "Main Branch",
+    branch: "TDC's Athletes",
     delay: "0.7s",
   },
   {
@@ -82,7 +82,7 @@ const athletesData: Athlete[] = [
     name: "Anil Rai",
     role: "Striker",
     image: "/images/member/team4.png",
-    branch: "Branch Office",
+    branch: "LFES Athletes",
     delay: "0.7s",
   },
   {
@@ -90,7 +90,7 @@ const athletesData: Athlete[] = [
     name: "Sandeep Limbu",
     role: "Winger",
     image: "/images/member/team3.jpg",
-    branch: "Branch Office",
+    branch: "LFES Athletes",
     delay: "0.5s",
   },
   {
@@ -98,7 +98,7 @@ const athletesData: Athlete[] = [
     name: "Prakash Magar",
     role: "Defender",
     image: "/images/member/team1.jpg",
-    branch: "Branch Office",
+    branch: "LFES Athletes",
     delay: "0.1s",
   },
   {
@@ -106,7 +106,7 @@ const athletesData: Athlete[] = [
     name: "Dipesh Basnet",
     role: "Midfielder",
     image: "/images/member/team2.jpg",
-    branch: "Branch Office",
+    branch: "LFES Athletes",
     delay: "0.3s",
   },
 ];
@@ -125,7 +125,7 @@ export default function Athletes() {
   return (
     <Layout headerStyle={1} footerStyle={1}>
       <div>
-        <Breadcrum title="Athletes" />
+        <Breadcrum title="Active  Athletes" />
         <div className="tf-widget-team main-content">
           <div className="themeflat-container">
             <div className="athletes-filters" style={STYLES.filtersContainer}>

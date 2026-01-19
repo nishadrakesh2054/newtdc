@@ -87,7 +87,7 @@ export default function Blog() {
       <div className="themeflat-container">
         <div className="widget-tf-blog">
           <div className="tf-title-wrap title-small">
-            <h2 className="title-blog wow fadeInUp animated">Our Blogs</h2>
+            <h2 className="title-blog wow fadeInUp animated">sports stories</h2>
             <Link href="/blog" className="view-more wow fadeInUp animated">
               View all
               <ArrowIcon />

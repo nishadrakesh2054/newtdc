@@ -196,7 +196,7 @@ const EventCard = ({ event }: { event: (typeof eventsData)[0] }) => (
           >
             {event.title}
           </h3>
-          <p className="post wow fadeInUp animated">{event.description}</p>
+          <p className="post wow fadeInUp animated p-text ">{event.description}</p>
           {event.features && <FeatureList features={event.features} />}
           <p className="post regis-now wow fadeInUp animated">
             Get ready to showcase your skills and compete with the best in the{" "}
@@ -358,7 +358,7 @@ export default function Event() {
                       </div>
                     </div>
                   </div>
-                ))}
+                ))}  
             </div>
           </div>
 

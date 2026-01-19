@@ -76,8 +76,8 @@ export default function Team1() {
       <div className="themeflat-container">
         <div className="team-member">
           <div className="title-box title-small center-title-box">
-            <span className="sub-title wow fadeInUp animated">Our team</span>
-            <h2 className="title-section wow fadeInUp animated">our member, couch</h2>
+            <span className="sub-title wow fadeInUp animated">power behind the thunderbolts</span>
+            <h2 className="title-section wow fadeInUp animated">our members </h2>
           </div>
           <div className="row team">
             {teamMembersData.map((member) => (

@@ -70,6 +70,11 @@ export default function MobileMenu({
             </ul>
             {/* /.submenu */}
           </li>
+          <li
+            className={`item ${pathname === "/esports" ? "current-menu-item" : ""}`}
+          >
+            <Link href="/esports">Esports</Link>
+          </li>
 
           <li
             className={`item ${checkParentActive([

@@ -87,7 +87,7 @@ export default function About() {
                 <div className="about-intro-content">
                   <div className="post-content wow fadeInUp animated">
                     {introParagraphs.map((paragraph) => (
-                      <p key={paragraph.id} className="post wow fadeInUp animated">
+                      <p key={paragraph.id} className="post wow fadeInUp animated p-text">
                         {paragraph.content}
                       </p>
                     ))}
@@ -166,7 +166,7 @@ export default function About() {
                           role="tabpanel"
                           aria-labelledby={`nav-${tab.id === 1 ? "home" : "profile"}-tab`}
                         >
-                          <p className="post wow fadeInUp animated">
+                          <p className="post wow fadeInUp animated ">
                             {tab.content}
                           </p>
                         </div>

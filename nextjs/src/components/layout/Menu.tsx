@@ -55,6 +55,12 @@ export default function Menu() {
         </li>
 
         <li
+          className={`item ${pathname === "/esports" ? "current-menu-item" : ""}`}
+        >
+          <Link href="/esports">Esports</Link>
+        </li>
+
+        <li
           className={`item ${checkParentActive(["/event", ])}`}
         >
           <Link href="/#">Our Events</Link>

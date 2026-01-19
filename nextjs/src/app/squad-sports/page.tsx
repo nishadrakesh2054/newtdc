@@ -16,7 +16,7 @@ const footballData = [
     age: "6 – 10 years old",
     description:
       "Our Grassroots program is designed to introduce young athletes to the fundamentals of sports in a fun and engaging environment. Through age-appropriate training and activities, we nurture their passion for sports while building essential skills. Athletes in this category will have the opportunity to participate in beginner and non-beginner groups, ensuring tailored coaching that caters to their individual needs and abilities.",
-    image: "/images/camp/wintercmp.jpg",
+    image: "/img/academy/football3.png",
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const footballData = [
     age: "11 – 15 years old",
     description:
       "The Intermediate program focuses on refining skills and enhancing performance for young athletes ready to take their game to the next level. With a more structured approach, this level emphasizes skill development, teamwork, and competition. Athletes can choose between beginner and non-beginner groups to ensure they receive the right support and challenge, preparing them for future sporting endeavors.",
-    image: "/images/camp/spring.jpg",
+    image: "/img/academy/football2.png",
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ const footballData = [
     age: "16 – 19 years old",
     description:
       "Our Senior program is tailored for aspiring athletes looking to excel in their chosen sport. At this level, we focus on advanced training techniques, performance optimization, and competitive readiness. Athletes will benefit from specialized coaching in either beginner or non-beginner groups, allowing for personalized development that meets their individual goals and aspirations.",
-    image: "/images/camp/athlete.jpg",
+    image: "/img/academy/football1.png",
   },
 ];
 
@@ -97,7 +97,7 @@ const basketballData = [
     age: "6 – 10 years old",
     description:
       "Our Grassroots program is designed to introduce young athletes to the fundamentals of sports in a fun and engaging environment. Through age-appropriate training and activities, we nurture their passion for sports while building essential skills. Athletes in this category will have the opportunity to participate in beginner and non-beginner groups, ensuring tailored coaching that caters to their individual needs and abilities.",
-    image: "/images/camp/wintercmp.jpg",
+      image: "/img/academy/bb1.jpg",
   },
   {
     id: 2,
@@ -105,7 +105,7 @@ const basketballData = [
     age: "11 – 15 years old",
     description:
       "The Intermediate program focuses on refining skills and enhancing performance for young athletes ready to take their game to the next level. With a more structured approach, this level emphasizes skill development, teamwork, and competition. Athletes can choose between beginner and non-beginner groups to ensure they receive the right support and challenge, preparing them for future sporting endeavors.",
-    image: "/images/camp/spring.jpg",
+    image: "/img/academy/bb2.jpg",
   },
   {
     id: 3,
@@ -259,7 +259,7 @@ const ImageGallery = ({
 
 export default function SquadSports() {
   const [activeFilter, setActiveFilter] = useState<
-    "football" | "futsal" | "cricket" | "basketball"
+    "football" | "basketball" | "futsal" | "cricket"
   >("football");
 
   const getCurrentData = () => {
@@ -325,10 +325,8 @@ export default function SquadSports() {
             </h4>
 
             <p
-              className="post wow fadeInUp animated"
-              style={{
-                textAlign: "justify",
-              }}
+              className="post wow fadeInUp animated p-text"
+                 
             >
               {item.description}
             </p>
@@ -481,9 +479,10 @@ export default function SquadSports() {
               >
                 {[
                   { label: "Football Academy", value: "football" },
+                  { label: "Basketball Academy", value: "basketball" },
                   { label: "Futsal Academy", value: "futsal" },
                   { label: "Cricket Academy", value: "cricket" },
-                  { label: "Basketball Academy", value: "basketball" },
+               
                 ].map((filter) => (
                   <div key={filter.value} className="button">
                     <button
@@ -523,14 +522,8 @@ export default function SquadSports() {
                   backgroundColor: "#f8f9fa",
                 }}
               >
-                <p
-                  style={{
-                    fontSize: "16px",
-                    lineHeight: "1.8",
-                    color: "#333",
-                    textAlign: "justify",
-                    margin: 0,
-                  }}
+                     <p className="post wow fadeInUp animated p-text"
+                 
                 >
                   {currentIntroText}
                 </p>

@@ -39,11 +39,11 @@ export default function Counter() {
                     <CountUp
                       className="numb-count "
                       enableScrollSpy={true}
-                      end={196}
+                      end={15}
                       data-speed={2000}
                       data-waypoint-active="yes"
                     />
-                    <div className="name-count">sports championships</div>
+                    <div className="name-count">sports Programs</div>
                   </div>
                 </div> 
                 {/* /.flat-counter */}
@@ -85,7 +85,7 @@ export default function Counter() {
                     <CountUp
                       className="numb-count"
                       enableScrollSpy={true}
-                      end={2432}
+                      end={99}
                       data-speed={2000}
                       data-waypoint-active="yes"
                     />
@@ -123,7 +123,7 @@ export default function Counter() {
                     <CountUp
                       className="numb-count"
                       enableScrollSpy={true}
-                      end={244}
+                      end={24}
                       data-speed={2000}
                       data-waypoint-active="yes"
                     />
@@ -193,11 +193,11 @@ export default function Counter() {
                     <CountUp
                       className="numb-count"
                       enableScrollSpy={true}
-                      end={85}
+                      end={25}
                       data-speed={2000}
                       data-waypoint-active="yes"
                     />
-                    <div className="name-count">training programs</div>
+                    <div className="name-count">training running sessions</div>
                   </div>
                 </div>
                 {/* /.flat-counter */}
